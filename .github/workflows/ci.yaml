@@ -1,0 +1,32 @@
+name: Run tests
+
+on:
+    push:
+      branches:
+        - ci-workflow
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create a virtual environment and install requirements
+        run: |
+          python3 -m venv .venv
+          source ./.venv/bin/activate
+          pip install -r requirements.txt
+      
+      - name: Run tests
+        run: pytest
+
+
+        
+	# your task: figure out the remainings steps 
+	# that match your selected language. 
+	# Hint: follow slide 11 for inspiration
+	# You should first find an action that sets up the environment
+	# for your selected programming language. 
+	# You should then set up the steps to run similar to how you run
+	# them locally
